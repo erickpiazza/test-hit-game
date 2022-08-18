@@ -4,6 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Classification from "../screens/Classification";
+import Clubs from "../screens/Clubs";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -45,7 +46,7 @@ export function AppRoutes() {
 
       <Screen
         name="Clubes"
-        component={Classification}
+        component={Clubs}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="sports-soccer" size={size} color={color} />

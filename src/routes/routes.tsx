@@ -1,16 +1,15 @@
 import React from "react";
 import { Platform, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useTheme } from "styled-components";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Classification from "../screens/Classification";
 import Clubs from "../screens/Clubs";
+import theme from "../global/styles/theme";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 export function AppRoutes() {
-  const theme = useTheme();
-
   return (
     <Navigator
       screenOptions={{

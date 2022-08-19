@@ -1,40 +1,25 @@
 import React from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, StyleSheet, Text } from "react-native";
 import { data } from "../../../../utils/test";
 import { SvgCssUri } from "react-native-svg";
 import Cell from "./components/Cell";
-import {
-  Line,
-  Column,
-  ClubName,
-  ClubAcronym,
-  ClubBox,
-  ClubDescription,
-} from "./styles";
-import { useTheme } from "styled-components";
+import theme from "../../../../global/styles/theme";
 
 export default function Table() {
-  const theme = useTheme();
-
   function SectionClub() {
     return (
-      <Column>
-        <Line>
+      <View style={styles.column}>
+        <View style={styles.line}>
           <Cell value="#" />
           <Cell value="Time" />
-        </Line>
+        </View>
 
         {data.map((item, index) => (
-          <Line key={index}>
+          <View style={styles.line} key={index}>
             <Cell value={`${item.posicao}º`} />
-            <ClubBox>
+            <View style={styles.clubBox}>
               {item.time.escudo ? (
-                <SvgCssUri
-                  width="40"
-                  height="40"
-                  //uri="https://apifutebol.s3.sa-east-1.amazonaws.com/escudos/5f999ca0e01e3.svg"
-                  uri={item.time.escudo}
-                />
+                <SvgCssUri width="40" height="40" uri={item.time.escudo} />
               ) : (
                 <View
                   style={{
@@ -44,14 +29,14 @@ export default function Table() {
                   }}
                 />
               )}
-              <ClubDescription>
-                <ClubName>{item.time.nome_popular}</ClubName>
-                <ClubAcronym>{item.time.sigla}</ClubAcronym>
-              </ClubDescription>
-            </ClubBox>
-          </Line>
+              <View style={styles.clubDescription}>
+                <Text style={styles.clubName}>{item.time.nome_popular}</Text>
+                <Text style={styles.clubAcronym}>{item.time.sigla}</Text>
+              </View>
+            </View>
+          </View>
         ))}
-      </Column>
+      </View>
     );
   }
 
@@ -59,7 +44,7 @@ export default function Table() {
     return (
       <ScrollView horizontal>
         <View>
-          <Line>
+          <View style={styles.line}>
             <Cell value="J" />
             <Cell value="V" />
             <Cell value="E" />
@@ -69,10 +54,10 @@ export default function Table() {
             <Cell value="SG" />
             <Cell value="P" />
             <Cell value="AP" />
-          </Line>
+          </View>
 
           {data.map((item, index) => (
-            <Line key={index}>
+            <View style={styles.line} key={index}>
               <Cell value={item.jogos} />
               <Cell value={item.vitorias} />
               <Cell value={item.empates} />
@@ -82,7 +67,7 @@ export default function Table() {
               <Cell value={item.saldo_gols} />
               <Cell value={item.pontos} />
               <Cell value={`${item.aproveitamento}%`} />
-            </Line>
+            </View>
           ))}
         </View>
       </ScrollView>
@@ -91,10 +76,45 @@ export default function Table() {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={{ flexDirection: "row" }}>
+      <View style={styles.container}>
         <SectionClub />
         <SectionPoints />
       </View>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+  },
+
+  line: {
+    backgroundColor: theme.colors.white,
+    flexDirection: "row",
+    height: 48,
+    marginTop: 8,
+    alignItems: "center",
+  },
+  column: {
+    width: "50%",
+  },
+  clubBox: {
+    height: "100%",
+    alignItems: "center",
+    flexDirection: "row",
+    paddingLeft: 4,
+    borderLeftColor: theme.colors.gray,
+    borderLeftWidth: 1,
+  },
+  clubDescription: {
+    flexDirection: "column",
+    marginLeft: 8,
+  },
+  clubName: { fontFamily: theme.fonts.medium },
+  clubAcronym: {
+    color: theme.colors.gray_dark,
+    fontFamily: theme.fonts.regular,
+    fontSize: 12,
+  },
+});

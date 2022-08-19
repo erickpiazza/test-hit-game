@@ -1,19 +1,9 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SvgCssUri } from "react-native-svg";
-import { useTheme } from "styled-components";
 import { Button } from "../../components/Button";
+import theme from "../../global/styles/theme";
 import { LabelDescription } from "./components/LabelDescription";
-
-import {
-  Container,
-  Header,
-  Title,
-  Category,
-  Name,
-  Separator,
-  Footer,
-} from "./styles";
 
 interface ClubDetails {
   posicao: number;
@@ -42,13 +32,11 @@ interface Props {
 }
 
 export function ClubDetails({ clubDetails, handleClose }: Props) {
-  const theme = useTheme();
-
   return (
-    <Container>
-      <Header>
-        <Title>{clubDetails?.time.nome_popular}</Title>
-      </Header>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>{clubDetails?.time.nome_popular}</Text>
+      </View>
       <View
         style={{
           flex: 1,
@@ -97,10 +85,32 @@ export function ClubDetails({ clubDetails, handleClose }: Props) {
           />
         </View>
 
-        <View>
+        <View style={styles.footer}>
           <Button title="Fechar" onPress={handleClose} />
         </View>
       </View>
-    </Container>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  header: {
+    width: "100%",
+    height: 113,
+    backgroundColor: theme.colors.green,
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: 19,
+  },
+
+  title: {
+    fontFamily: theme.fonts.regular,
+    color: theme.colors.white,
+    fontSize: 18,
+  },
+  footer: { width: "100%", padding: 24 },
+});

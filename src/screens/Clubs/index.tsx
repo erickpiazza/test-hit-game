@@ -1,13 +1,19 @@
 import React, { useMemo, useState } from "react";
-import { FlatList, Modal, Text, View } from "react-native";
+import {
+  FlatList,
+  Modal,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SvgCssUri } from "react-native-svg";
-import { useTheme } from "styled-components";
-import { Container, Input } from "./styles";
 import { data } from "../../utils/test";
 import { SelectFilter } from "./components/SelectFilter";
 import { Option } from "./components/SelectFilter/components/SelectModal";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ClubDetails } from "../ClubDetails";
+import theme from "../../global/styles/theme";
 
 const options = [
   { key: "nome", name: "Nome" },
@@ -16,7 +22,6 @@ const options = [
 ];
 
 export default function Clubs() {
-  const theme = useTheme();
   const [selectedOption, setSelectedOption] = useState({
     key: "",
     name: "Selecione um filtro",
@@ -55,14 +60,15 @@ export default function Clubs() {
 
   return (
     <>
-      <Container>
+      <View style={styles.container}>
         <SelectFilter
           selectedOption={selectedOption}
           setSelectedOption={handleSelectOption}
           options={options}
         />
         {selectedOption.key && (
-          <Input
+          <TextInput
+            style={styles.textInput}
             placeholder={selectedOption.name}
             value={search}
             onChangeText={setSearch}
@@ -152,7 +158,7 @@ export default function Clubs() {
             );
           }}
         />
-      </Container>
+      </View>
 
       <Modal visible={!!selectedClubIndex || selectedClubIndex === 0}>
         <ClubDetails
@@ -167,3 +173,21 @@ export default function Clubs() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+    padding: 8,
+  },
+  textInput: {
+    width: "100%",
+    padding: 8,
+    fontSize: 12,
+    fontFamily: theme.fonts.regular,
+    backgroundColor: theme.colors.white,
+    borderRadius: 5,
+    marginBottom: 8,
+    color: theme.colors.black,
+  },
+});

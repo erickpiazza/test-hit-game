@@ -1,7 +1,17 @@
-Dificuldades **
+Dificuldades *
 
 manipular arquivos URI em svgs está dando alguns erros não consegui identificar o motivo
 
 
 Desafios **
 Criar uma tabela com scroll vertical e horizontal
+
+
+
+ferramentas***
+typeScript
+react-native
+expo
+styled-components
+react-native-svg
+json-server: https://github.com/typicode/json-server#database

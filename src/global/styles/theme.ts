@@ -12,6 +12,7 @@ export default {
 
     gray: "#D9D9D9",
     gray_dark: "#B5B8B6",
+    gray_light: "rgba(208, 208, 208,0.3)",
 
     background: "#F0F2F5",
   },

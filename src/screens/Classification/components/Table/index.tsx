@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
-import { data } from "../../utils/test";
+import { data } from "../../../../utils/test";
 import { SvgCssUri } from "react-native-svg";
 import Cell from "./components/Cell";
 import {
@@ -11,8 +11,11 @@ import {
   ClubBox,
   ClubDescription,
 } from "./styles";
+import { useTheme } from "styled-components";
 
 export default function Table() {
+  const theme = useTheme();
+
   function SectionClub() {
     return (
       <Column>
@@ -25,12 +28,22 @@ export default function Table() {
           <Line key={index}>
             <Cell value={`${item.posicao}º`} />
             <ClubBox>
-              <SvgCssUri
-                width="32"
-                height="32"
-                uri="https://apifutebol.s3.sa-east-1.amazonaws.com/escudos/5f999ca0e01e3.svg"
-                //uri={item.time.escudo}
-              />
+              {item.time.escudo ? (
+                <SvgCssUri
+                  width="40"
+                  height="40"
+                  //uri="https://apifutebol.s3.sa-east-1.amazonaws.com/escudos/5f999ca0e01e3.svg"
+                  uri={item.time.escudo}
+                />
+              ) : (
+                <View
+                  style={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: theme.colors.gray_light,
+                  }}
+                />
+              )}
               <ClubDescription>
                 <ClubName>{item.time.nome_popular}</ClubName>
                 <ClubAcronym>{item.time.sigla}</ClubAcronym>

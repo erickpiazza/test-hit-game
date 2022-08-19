@@ -111,8 +111,8 @@ export const data = [
       time_id: 44,
       nome_popular: "Internacional",
       sigla: "INT",
-      escudo:
-        "https://apifutebol.s3.sa-east-1.amazonaws.com/escudos/5f999cbb0b297.svg",
+      escudo: "",
+      // "https://apifutebol.s3.sa-east-1.amazonaws.com/escudos/5f999cbb0b297.svg",
     },
     jogos: 21,
     vitorias: 8,
@@ -342,8 +342,8 @@ export const data = [
       time_id: 131,
       nome_popular: "Fortaleza",
       sigla: "FOR",
-      escudo:
-        "https://apifutebol.s3.sa-east-1.amazonaws.com/escudos/5f999ddaa261b.svg",
+      escudo: "",
+      // "https://apifutebol.s3.sa-east-1.amazonaws.com/escudos/5f999ddaa261b.svg",
     },
     jogos: 21,
     vitorias: 5,

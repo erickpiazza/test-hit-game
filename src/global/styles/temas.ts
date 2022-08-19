@@ -1,4 +1,4 @@
-const tema = {
+export default {
   colors: {
     green: "#154733",
     green_light: "rgba(21, 71, 51, 0.5)",
@@ -23,5 +23,3 @@ const tema = {
     bold: "Poppins_700Bold",
   },
 };
-
-export default tema;

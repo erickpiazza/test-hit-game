@@ -35,23 +35,28 @@ export default function Clubs() {
   const [selectedClubIndex, setSelectedClubIndex] = useState<number>();
 
   const clubs = useMemo(() => {
-    if (!search && !victoryOrDefeat) return data;
+    let filtered = data;
+    if (!search && !victoryOrDefeat) filtered = data;
     if (victoryOrDefeat) {
-      return data.filter(
+      filtered = filtered.filter(
         (club) =>
           club.ultimos_jogos[club.ultimos_jogos.length - 1] ===
           (victoryOrDefeat === "victory" ? "v" : "d")
       );
     }
     if (selectedOption.key === "nome") {
-      return data.filter((club) => club.time.nome_popular.includes(search));
+      filtered = filtered.filter((club) =>
+        club.time.nome_popular.includes(search)
+      );
     } else if (selectedOption.key === "aproveitamento") {
-      return data.filter((club) => club.aproveitamento >= Number(search));
+      filtered = filtered.filter(
+        (club) => club.aproveitamento >= Number(search)
+      );
     } else if (selectedOption.key === "saldoDeGols") {
-      return data.filter((club) => club.saldo_gols >= Number(search));
+      filtered = filtered.filter((club) => club.saldo_gols >= Number(search));
     }
 
-    return data;
+    return filtered;
   }, [search, victoryOrDefeat]);
 
   function handleSelectOption(option: Option) {

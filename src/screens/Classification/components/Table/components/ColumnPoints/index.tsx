@@ -30,7 +30,7 @@ interface Props {
 
 export default function ColumnPoints({ clubs }: Props) {
   return (
-    <ScrollView horizontal snapToAlignment="end">
+    <ScrollView horizontal>
       <View>
         <View style={styles.line}>
           <Cell value="J" />

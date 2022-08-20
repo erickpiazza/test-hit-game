@@ -4,9 +4,9 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Button } from "../../components/Button";
 import theme from "../../global/styles/theme";
 import { Header } from "./components/Header";
-import { Shield } from "./components/Shield";
 import { BoxDetails } from "./components/BoxDetails";
 import { getBottomSpace } from "react-native-iphone-x-helper";
+import { Shield } from "../../components/Shield";
 
 interface ClubDetails {
   posicao: number;
@@ -38,7 +38,12 @@ export function ClubDetails({ clubDetails, handleClose }: Props) {
   return (
     <View style={styles.container}>
       <Header title={clubDetails?.time.nome_popular} />
-      <Shield uriShield={clubDetails?.time.escudo} />
+      <Shield
+        width={80}
+        height={80}
+        uriShield={clubDetails?.time.escudo}
+        style={styles.shield}
+      />
       <BoxDetails clubDetails={clubDetails} />
 
       <View style={styles.footer}>
@@ -53,6 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
+  shield: { marginTop: 16, marginBottom: 8, alignItems: "center" },
   footer: {
     width: "100%",
     paddingBottom: getBottomSpace() + 8,

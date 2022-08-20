@@ -1,14 +1,15 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, StyleProp, ViewStyle } from "react-native";
 import theme from "../../../../../../global/styles/theme";
 
 interface CellProps {
   value: string | number;
+  style?: StyleProp<ViewStyle>;
 }
 
-export default function Cell({ value }: CellProps) {
+export default function Cell({ value, style }: CellProps) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Text style={styles.label}>{value}</Text>
     </View>
   );

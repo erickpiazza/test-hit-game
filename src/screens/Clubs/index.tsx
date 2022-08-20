@@ -80,19 +80,17 @@ export default function Clubs() {
             onChangeText={setSearch}
           />
         )}
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
+        <View style={styles.boxButtonVictoryOrDefeat}>
           <TouchableOpacity
-            style={{
-              backgroundColor:
-                victoryOrDefeat === "victory"
-                  ? theme.colors.green
-                  : theme.colors.gray,
-              padding: 8,
-              margin: 8,
-              borderRadius: 8,
-              alignItems: "center",
-              flexGrow: 1,
-            }}
+            style={[
+              styles.buttonVictoryOrDefeat,
+              {
+                backgroundColor:
+                  victoryOrDefeat === "victory"
+                    ? theme.colors.green
+                    : theme.colors.gray,
+              },
+            ]}
             onPress={() =>
               setVictoryOrDefeat(
                 victoryOrDefeat === "victory" ? undefined : "victory"
@@ -102,16 +100,15 @@ export default function Clubs() {
             <Text>Ultima Vitoria</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{
-              backgroundColor:
-                victoryOrDefeat === "defeat"
-                  ? theme.colors.red
-                  : theme.colors.gray,
-              padding: 8,
-              margin: 8,
-              borderRadius: 8,
-              alignItems: "center",
-            }}
+            style={[
+              styles.buttonVictoryOrDefeat,
+              {
+                backgroundColor:
+                  victoryOrDefeat === "defeat"
+                    ? theme.colors.red
+                    : theme.colors.gray,
+              },
+            ]}
             onPress={() =>
               setVictoryOrDefeat(
                 victoryOrDefeat === "defeat" ? undefined : "defeat"
@@ -133,14 +130,7 @@ export default function Clubs() {
             return (
               <TouchableOpacity
                 onPress={() => setSelectedClubIndex(index)}
-                style={{
-                  backgroundColor: theme.colors.gray_light,
-                  padding: 8,
-                  height: 100,
-                  width: 100,
-                  margin: 4,
-                  borderRadius: 8,
-                }}
+                style={styles.boxClub}
               >
                 <Text>{item.posicao}</Text>
                 <View
@@ -149,13 +139,7 @@ export default function Clubs() {
                   {item.time.escudo ? (
                     <SvgCssUri width="40" height="40" uri={item.time.escudo} />
                   ) : (
-                    <View
-                      style={{
-                        width: 40,
-                        height: 40,
-                        backgroundColor: theme.colors.gray_light,
-                      }}
-                    />
+                    <View style={styles.emptyShield} />
                   )}
 
                   <Text style={{ marginTop: 8 }}>{item.time.nome_popular}</Text>
@@ -195,5 +179,26 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 8,
     color: theme.colors.black,
+  },
+  boxButtonVictoryOrDefeat: { flexDirection: "row", justifyContent: "center" },
+  buttonVictoryOrDefeat: {
+    padding: 8,
+    margin: 8,
+    borderRadius: 8,
+    alignItems: "center",
+    flexGrow: 1,
+  },
+  boxClub: {
+    backgroundColor: theme.colors.gray_light,
+    padding: 8,
+    height: 100,
+    width: 100,
+    margin: 4,
+    borderRadius: 8,
+  },
+  emptyShield: {
+    width: 40,
+    height: 40,
+    backgroundColor: theme.colors.gray_light,
   },
 });

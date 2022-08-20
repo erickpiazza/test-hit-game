@@ -12,6 +12,6 @@ ferramentas***
 typeScript
 react-native
 expo
-styled-components
 react-native-svg
-json-server: https://github.com/typicode/json-server#database
+react-native-responsive-fontsize
+react-native-iphone-x-helper

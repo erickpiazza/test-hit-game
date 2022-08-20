@@ -5,13 +5,14 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { SvgCssUri } from "react-native-svg";
 import { data } from "../../utils/test";
 import { SelectFilter } from "./components/SelectFilter";
 import { Option } from "./components/SelectFilter/components/SelectModal";
-import { TouchableOpacity } from "react-native-gesture-handler";
+
 import { ClubDetails } from "../ClubDetails";
 import theme from "../../global/styles/theme";
 

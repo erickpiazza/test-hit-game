@@ -1,9 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SvgCssUri } from "react-native-svg";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 import { Button } from "../../components/Button";
 import theme from "../../global/styles/theme";
-import { LabelDescription } from "./components/LabelDescription";
+import { Header } from "./components/Header";
+import { Shield } from "./components/Shield";
+import { BoxDetails } from "./components/BoxDetails";
+import { getBottomSpace } from "react-native-iphone-x-helper";
 
 interface ClubDetails {
   posicao: number;
@@ -34,60 +37,12 @@ interface Props {
 export function ClubDetails({ clubDetails, handleClose }: Props) {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{clubDetails?.time.nome_popular}</Text>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "space-between",
-        }}
-      >
-        <View>
-          <View style={{ alignItems: "center", marginTop: 8 }}>
-            {clubDetails?.time.escudo ? (
-              <SvgCssUri
-                width="130"
-                height="130"
-                uri={clubDetails?.time.escudo}
-              />
-            ) : (
-              <View
-                style={{
-                  width: 130,
-                  height: 130,
-                  backgroundColor: theme.colors.gray_light,
-                }}
-              />
-            )}
-          </View>
-          <LabelDescription title="Pontos" value={clubDetails?.pontos} />
-          <LabelDescription title="Jogos" value={clubDetails?.jogos} />
-          <LabelDescription title="Vitorias" value={clubDetails?.vitorias} />
-          <LabelDescription title="Empates" value={clubDetails?.empates} />
-          <LabelDescription title="Derrotas" value={clubDetails?.derrotas} />
-          <LabelDescription title="Gols pro" value={clubDetails?.gols_pro} />
-          <LabelDescription
-            title="Gols contra"
-            value={clubDetails?.gols_contra}
-          />
-          <LabelDescription
-            title="Aproveitamento"
-            value={`${clubDetails?.aproveitamento}%`}
-          />
-          <LabelDescription
-            title="Variação de posição"
-            value={clubDetails?.variacao_posicao}
-          />
-          <LabelDescription
-            title="Ultimos Jogos"
-            value={clubDetails?.ultimos_jogos.join().toLocaleUpperCase()}
-          />
-        </View>
+      <Header title={clubDetails?.time.nome_popular} />
+      <Shield uriShield={clubDetails?.time.escudo} />
+      <BoxDetails clubDetails={clubDetails} />
 
-        <View style={styles.footer}>
-          <Button title="Fechar" onPress={handleClose} />
-        </View>
+      <View style={styles.footer}>
+        <Button title="Fechar" onPress={handleClose} />
       </View>
     </View>
   );
@@ -98,19 +53,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
-  header: {
+  footer: {
     width: "100%",
-    height: 113,
-    backgroundColor: theme.colors.green,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    paddingBottom: 19,
+    paddingBottom: getBottomSpace() + 8,
+    paddingHorizontal: 8,
   },
-
-  title: {
-    fontFamily: theme.fonts.regular,
-    color: theme.colors.white,
-    fontSize: 18,
-  },
-  footer: { width: "100%", padding: 24 },
 });

@@ -18,15 +18,21 @@ export function AppRoutes() {
             style={{ backgroundColor: theme.colors.green, height: "100%" }}
           />
         ),
-        headerTitleStyle: { color: theme.colors.white },
+        tabBarHideOnKeyboard: true,
+        headerTitleStyle: {
+          color: theme.colors.white,
+        },
         tabBarActiveTintColor: theme.colors.green,
         tabBarInactiveTintColor: theme.colors.gray_dark,
         tabBarLabelPosition: "beside-icon",
         tabBarStyle: {
           paddingVertical: Platform.OS === "ios" ? 20 : 0,
-          height: 88,
+          height: 72,
         },
-        tabBarLabelStyle: { fontFamily: theme.fonts.bold },
+        headerTitleAlign: "center",
+        tabBarLabelStyle: {
+          fontFamily: theme.fonts.bold,
+        },
       }}
     >
       <Screen
